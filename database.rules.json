@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "pastes": {
+      "$paste": {
+        ".read": true,
+        ".write": "newData.exists()",
+        ".validate": "newData.hasChildren(['name','cipherText'])"
+      }
+    }
+  }
+}
