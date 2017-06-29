@@ -1,6 +1,6 @@
 <h1>Create Paste</h1>
 <p>Create a cryptographically secure paste.</p>
-<form>
+<form (ngSubmit)="createPaste()">
   <h3>Name</h3>
   <p>The name is public. This can be viewed by anybody and will not be encrypted.</p>
   <input type="text"
@@ -11,7 +11,7 @@
   <p>This text will be encrypted.</p>
   <textarea
     name="text"
-    [(ngModel)]="paste.text"
+    [(ngModel)]="paste.plainText"
     required></textarea>
   <br>
   <br>
