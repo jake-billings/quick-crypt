@@ -18,6 +18,9 @@ export class PasteViewComponent implements OnInit {
   key: String;
   unencryptedPaste: UnencryptedPaste;
 
+  loading: Boolean = true;
+  notFound: Boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -27,6 +30,12 @@ export class PasteViewComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this._pasteBackendService.getPaste(params['paste_id']))
       .subscribe((paste: Paste) => {
+        this.loading = !paste;
+        if (this.loading) return;
+
+        this.notFound = !paste.name;
+        if (this.notFound) return;
+
         this.paste = paste;
         this.updateDecryptedPaste()
       });

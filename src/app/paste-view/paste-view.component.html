@@ -1,23 +1,31 @@
 <h1>View Paste</h1>
-<p>View a cryptographically secure paste.</p>
-<h3>Key</h3>
-<p>The is private. We don't store the key. That's why this is secure.</p>
-<input type="text"
-       name="name"
-       [(ngModel)]="key"
-       (ngModelChange)="updateDecryptedPaste()"
-       required>
-<h3>Name</h3>
-<p>The name is public. This can be viewed by anybody and is not encrypted.</p>
-<p *ngIf="paste">{{paste.name}}</p>
-<h3>Text</h3>
-<p>The text is encrypted. Only people with the key can read it.</p>
-<p *ngIf="unencryptedPaste">{{unencryptedPaste.name}}</p>
-<p *ngIf="!unencryptedPaste">Enter a key to decrypt this paste</p>
-<h3>Raw</h3>
-<pre>
+<div *ngIf="loading">
+  <h2>Loading...</h2>
+</div>
+<div *ngIf="notFound">
+  <h2>Not Found</h2>
+</div>
+<div *ngIf="!loading&&!notFound">
+  <p>View a cryptographically secure paste.</p>
+  <h3>Key</h3>
+  <p>The is private. We don't store the key. That's why this is secure.</p>
+  <input type="text"
+         name="name"
+         [(ngModel)]="key"
+         (ngModelChange)="updateDecryptedPaste()"
+         required>
+  <h3>Name</h3>
+  <p>The name is public. This can be viewed by anybody and is not encrypted.</p>
+  <p *ngIf="paste">{{paste.name}}</p>
+  <h3>Text</h3>
+  <p>The text is encrypted. Only people with the key can read it.</p>
+  <p *ngIf="unencryptedPaste">{{unencryptedPaste.name}}</p>
+  <p *ngIf="!unencryptedPaste">Enter a key to decrypt this paste</p>
+  <h3>Raw</h3>
+  <pre>
   {{paste|json}}
 </pre>
-<pre>
+  <pre>
   {{unencryptedPaste|json}}
 </pre>
+</div>
