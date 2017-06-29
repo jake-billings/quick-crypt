@@ -14,7 +14,7 @@ const routes : Routes = [
     component: PasteCreateComponent
   },
   {
-    path: 'view',
+    path: 'view/:paste_id',
     component: PasteViewComponent
   },
   {
