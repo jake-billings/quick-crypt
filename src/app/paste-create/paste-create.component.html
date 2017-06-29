@@ -1,0 +1,22 @@
+<h1>Create Paste</h1>
+<p>Create a cryptographically secure paste.</p>
+<form>
+  <h3>Name</h3>
+  <p>The name is public. This can be viewed by anybody and will not be encrypted.</p>
+  <input type="text"
+         name="name"
+         [(ngModel)]="paste.name"
+         required>
+  <h3>Text</h3>
+  <p>This text will be encrypted.</p>
+  <textarea
+    name="text"
+    [(ngModel)]="paste.text"
+    required></textarea>
+  <br>
+  <br>
+  <pre>
+    {{paste|json}}
+  </pre>
+  <input type="submit">
+</form>
