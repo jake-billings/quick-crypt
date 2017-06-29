@@ -15,7 +15,27 @@ import { PasteViewComponent } from './paste-view/paste-view.component';
 
 import { RouterModule } from "@angular/router";
 
-import routes from "./routes"
+import { Routes } from "@angular/router"
+
+const routes : Routes = [
+  {
+    path: '',
+    redirectTo: 'create',
+    pathMatch: 'full'
+  },
+  {
+    path: 'create',
+    component: PasteCreateComponent
+  },
+  {
+    path: 'view/:paste_id',
+    component: PasteViewComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'create'
+  }
+];
 
 @NgModule({
   declarations: [
