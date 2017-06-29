@@ -7,12 +7,12 @@ export class EncryptionService {
   }
 
   //todo write a real encryption service
-  encrypt(plainText: String): String {
+  encrypt(key:String, plainText: String): String {
     return 'HonorSystemEncryption:PleaseDontRead:' + plainText;
   }
 
   //todo write a real encryption service
-  decrypt(cipherText: String): String {
+  decrypt(key:String, cipherText: String): String {
     return cipherText.replace('HonorSystemEncryption:PleaseDontRead:', '');
   }
 

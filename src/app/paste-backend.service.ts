@@ -17,11 +17,11 @@ export class PasteBackendService {
     this._encryption = _encryption;
   }
 
-  encryptPaste(unencryptedPaste: UnencryptedPaste) {
-    return new Paste(unencryptedPaste.name, this._encryption.encrypt(unencryptedPaste.plainText),unencryptedPaste.createdAt)
+  encryptPaste(key: String, unencryptedPaste: UnencryptedPaste) {
+    return new Paste(unencryptedPaste.name, this._encryption.encrypt(key, unencryptedPaste.plainText),unencryptedPaste.createdAt)
   }
-  decryptPaste(encryptedPaste: Paste) {
-    return new UnencryptedPaste(encryptedPaste.name, this._encryption.decrypt(encryptedPaste.cipherText),encryptedPaste.createdAt)
+  decryptPaste(key:String, encryptedPaste: Paste) {
+    return new UnencryptedPaste(encryptedPaste.name, this._encryption.decrypt(key, encryptedPaste.cipherText),encryptedPaste.createdAt)
   }
 
   createPaste(paste: Paste) {
@@ -29,8 +29,8 @@ export class PasteBackendService {
     return this.pastes.push(paste);
   }
 
-  encryptAndCreatePaste(unencryptedPaste: UnencryptedPaste) {
-    return this.createPaste(this.encryptPaste(unencryptedPaste))
+  encryptAndCreatePaste(key: String, unencryptedPaste: UnencryptedPaste) {
+    return this.createPaste(this.encryptPaste(key, unencryptedPaste))
   }
 
 }

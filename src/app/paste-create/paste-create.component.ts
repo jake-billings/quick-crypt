@@ -15,6 +15,8 @@ export class PasteCreateComponent implements OnInit {
     plainText: ''
   };
 
+  key = '';
+
   constructor(private _pasteBackendService: PasteBackendService) {
     this._pasteBackendService=_pasteBackendService;
   }
@@ -23,7 +25,7 @@ export class PasteCreateComponent implements OnInit {
   }
 
   createPaste() {
-    this._pasteBackendService.encryptAndCreatePaste(new UnencryptedPaste(this.paste.name, this.paste.plainText, database.ServerValue.TIMESTAMP))
+    this._pasteBackendService.encryptAndCreatePaste(this.key, new UnencryptedPaste(this.paste.name, this.paste.plainText, database.ServerValue.TIMESTAMP))
       .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You do not have access!'));
   }
