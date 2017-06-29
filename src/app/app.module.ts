@@ -11,17 +11,24 @@ import { environment } from '../environments/environment';
 import { PasteCreateComponent } from './paste-create/paste-create.component';
 
 import { EncryptionService } from './encryption.service';
+import { PasteViewComponent } from './paste-view/paste-view.component';
+
+import { RouterModule } from "@angular/router";
+
+import routes from "./routes"
 
 @NgModule({
   declarations: [
     AppComponent,
-    PasteCreateComponent
+    PasteCreateComponent,
+    PasteViewComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [EncryptionService],
   bootstrap: [AppComponent]
