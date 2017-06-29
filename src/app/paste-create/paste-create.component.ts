@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { PasteBackendService } from '../paste-backend.service';
-import { UnencryptedPaste } from "../UnencryptedPaste";
-import { database } from "firebase"
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router"
+
+import {PasteBackendService} from '../paste-backend.service';
+import {UnencryptedPaste} from "../UnencryptedPaste";
+import {database} from "firebase"
+
 
 @Component({
   selector: 'app-paste-create',
@@ -17,16 +20,20 @@ export class PasteCreateComponent implements OnInit {
 
   key = '';
 
-  constructor(private _pasteBackendService: PasteBackendService) {
-    this._pasteBackendService=_pasteBackendService;
+  constructor(private _pasteBackendService: PasteBackendService, private router: Router) {
+    this._pasteBackendService = _pasteBackendService;
+    this.router = router;
   }
 
   ngOnInit() {
   }
 
   createPaste() {
-    this._pasteBackendService.encryptAndCreatePaste(this.key, new UnencryptedPaste(this.paste.name, this.paste.plainText, database.ServerValue.TIMESTAMP))
-      .then(_ => console.log('success'))
+    this._pasteBackendService.encryptAndCreatePaste(this.key,
+      new UnencryptedPaste(this.paste.name, this.paste.plainText, database.ServerValue.TIMESTAMP))
+      .then((result) => {
+        this.router.navigate([`/view/${result.key}`])
+      })
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
