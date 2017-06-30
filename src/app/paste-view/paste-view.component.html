@@ -24,7 +24,7 @@
          required>
   <h3>Text</h3>
   <p>The text is encrypted. It can only be decrypted using the correct private key.</p>
-  <pre *ngIf="unencryptedPaste">{{unencryptedPaste.name}}</pre>
+  <pre *ngIf="unencryptedPaste">{{unencryptedPaste.plainText}}</pre>
   <div *ngIf="!unencryptedPaste">
     <pre *ngIf="!incorrectKeyTried">Enter a key to decrypt this paste.</pre>
     <pre *ngIf="incorrectKeyTried">Sorry, that key is not valid for this paste.</pre>
