@@ -23,6 +23,7 @@ export class PasteViewComponent implements OnInit {
 
   loading: Boolean = true;
   notFound: Boolean = false;
+  incorrectKeyTried: Boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -48,9 +49,18 @@ export class PasteViewComponent implements OnInit {
 
   updateDecryptedPaste() {
     if (this.key && this.paste) {
-      this.unencryptedPaste = this._pasteBackendService.decryptPaste(this.key, this.paste);
+      try {
+        this.unencryptedPaste = this._pasteBackendService.decryptPaste(this.key, this.paste);
+      } catch (e) {
+        if (e.message!=='ccm: tag doesn\'t match') {
+          console.warn(e, typeof e)
+        }
+        this.unencryptedPaste = null;
+        this.incorrectKeyTried = true;
+      }
     } else {
       this.unencryptedPaste = null;
+      this.incorrectKeyTried = false;
     }
   }
 
