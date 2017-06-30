@@ -15,7 +15,7 @@ import { PasteViewComponent } from './paste-view/paste-view.component';
 
 import { RouterModule } from "@angular/router";
 
-import { Routes } from "@angular/router"
+import { Routes } from "@angular/router";
 
 const routes : Routes = [
   {
