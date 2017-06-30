@@ -5,5 +5,8 @@ Have you ever need to send somebody your SSN but been concerned with the securit
 
 Checkout the live preview on Firebase hosting: https://quick-crypt.firebaseapp.com
 
+## Encryption Strategy
+Encryption using a password has been abstracted to the `encrytion.service.ts` service. Currently, the service wraps the Stanford encryption library using `sjcl.json.encrypt()` as a simple encryption solution.
+
 ## Status
 This is currently a work-in-progress repository. As a result, it is lacking in testing, documentation, and styling.
