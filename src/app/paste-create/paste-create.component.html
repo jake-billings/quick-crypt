@@ -1,28 +1,28 @@
 <h1>Create Paste</h1>
-<p>Create a cryptographically secure paste.</p>
+<p>Create a cryptographically secure paste and store it in our public repository.</p>
 <form (ngSubmit)="createPaste()">
   <h3>Name</h3>
-  <p>The name is public. This can be viewed by anybody and will not be encrypted.</p>
+  <p>The name is public. This can be viewed by anybody and will not be encrypted</p>
   <input type="text"
          name="name"
+         class="form-control"
          [(ngModel)]="paste.name"
          required>
   <h3>Text</h3>
-  <p>This text will be encrypted.</p>
+  <p>This text will be encrypted and stored publically. However, only somebody with the private key can decrypt it.</p>
   <textarea
     name="text"
+    class="form-control"
     [(ngModel)]="paste.plainText"
     required></textarea>
   <h3>Key</h3>
-  <p>The is private. We don't store the key. That's why this is secure.</p>
+  <p>The key is private. We don't store the key. That's why this is secure.</p>
   <input type="text"
          name="name"
+         class="form-control"
          [(ngModel)]="key"
          required>
   <br>
   <br>
-  <pre>
-    {{paste|json}}
-  </pre>
-  <input type="submit">
+  <input type="submit" class="btn btn-primary">
 </form>
