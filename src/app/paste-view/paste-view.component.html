@@ -6,26 +6,20 @@
   <h2>Not Found</h2>
 </div>
 <div *ngIf="!loading&&!notFound">
-  <p>View a cryptographically secure paste.</p>
-  <h3>Key</h3>
-  <p>The is private. We don't store the key. That's why this is secure.</p>
-  <input type="text"
-         name="name"
-         [(ngModel)]="key"
-         (ngModelChange)="updateDecryptedPaste()"
-         required>
+  <p>View a cryptographically secure paste using the private key.</p>
   <h3>Name</h3>
   <p>The name is public. This can be viewed by anybody and is not encrypted.</p>
   <p *ngIf="paste">{{paste.name}}</p>
+  <h3>Key</h3>
+  <p>The key is private. We don't store the key. If it's lost, the plain text data is lost.</p>
+  <input type="text"
+         name="name"
+         class="form-control"
+         [(ngModel)]="key"
+         (ngModelChange)="updateDecryptedPaste()"
+         required>
   <h3>Text</h3>
-  <p>The text is encrypted. Only people with the key can read it.</p>
-  <p *ngIf="unencryptedPaste">{{unencryptedPaste.name}}</p>
-  <p *ngIf="!unencryptedPaste">Enter a key to decrypt this paste</p>
-  <h3>Raw</h3>
-  <pre>
-  {{paste|json}}
-</pre>
-  <pre>
-  {{unencryptedPaste|json}}
-</pre>
+  <p>The text is encrypted. It can only be decrypted using the correct private key.</p>
+  <pre *ngIf="unencryptedPaste">{{unencryptedPaste.name}}</pre>
+  <pre *ngIf="!unencryptedPaste">Enter a key to decrypt this paste</pre>
 </div>
