@@ -1,15 +1,19 @@
 <h1>View Paste</h1>
 <div *ngIf="loading">
-  <h2>Loading...</h2>
+  <h4>Loading...</h4>
 </div>
 <div *ngIf="notFound">
-  <h2>Not Found</h2>
+  <h4>Paste Not Found</h4>
+  <p>No paste was found in the public repository using the paste id from the url.</p>
 </div>
 <div *ngIf="!loading&&!notFound">
   <p>View a cryptographically secure paste using the private key.</p>
   <h3>Name</h3>
   <p>The name is public. This can be viewed by anybody and is not encrypted.</p>
   <p *ngIf="paste">{{paste.name}}</p>
+  <h3>Link</h3>
+  <p>This paste data is public. To share this paste, share this link.</p>
+  <pre *ngIf="URL">{{URL}}</pre>
   <h3>Key</h3>
   <p>The key is private. We don't store the key. If it's lost, the plain text data is lost.</p>
   <input type="text"

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit,Inject} from "@angular/core";
 import {ActivatedRoute, Router, Params} from "@angular/router";
 import {PasteBackendService} from "../paste-backend.service";
 
@@ -6,6 +6,8 @@ import 'rxjs/add/operator/switchMap';
 
 import {Paste} from "../Paste";
 import {UnencryptedPaste} from "../UnencryptedPaste";
+
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-paste-view',
@@ -15,16 +17,19 @@ import {UnencryptedPaste} from "../UnencryptedPaste";
 })
 export class PasteViewComponent implements OnInit {
   paste: Paste;
+  URL: String;
   key: String;
   unencryptedPaste: UnencryptedPaste;
 
   loading: Boolean = true;
   notFound: Boolean = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private _pasteBackendService: PasteBackendService) {}
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private _pasteBackendService: PasteBackendService,
+              @Inject(DOCUMENT) private document: any) {
+    this.URL = document.URL;
+  }
 
   ngOnInit() {
     this.route.params
@@ -42,10 +47,10 @@ export class PasteViewComponent implements OnInit {
   }
 
   updateDecryptedPaste() {
-    if (this.key&&this.paste) {
-      this.unencryptedPaste=this._pasteBackendService.decryptPaste(this.key,this.paste);
+    if (this.key && this.paste) {
+      this.unencryptedPaste = this._pasteBackendService.decryptPaste(this.key, this.paste);
     } else {
-      this.unencryptedPaste=null;
+      this.unencryptedPaste = null;
     }
   }
 
