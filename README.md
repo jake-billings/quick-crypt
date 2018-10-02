@@ -18,4 +18,4 @@ Since sensitive data in pastes is encrypted, it can be stored publically. As a r
 This is currently a work-in-progress repository. As a result, it is lacking in testing, documentation, and styling.
 
 ## Other Projects
-Checkout my other projects at [http://www.jakebillings.com](http://www.jakebillings.com) or contact me via [LinkedIn](https://www.linkedin.com/in/jake-billings/).
+Checkout my other projects at [https://jakebillings.com](http://www.jakebillings.com) or contact me via [LinkedIn](https://www.linkedin.com/in/jake-billings/).
